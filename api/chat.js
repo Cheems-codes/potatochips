@@ -90,7 +90,7 @@ module.exports = async function handler(req, res) {
     return res.status(503).json({ error: 'Gemini is not configured. Add GEMINI_API_KEY to Vercel environment variables.' });
   }
 
-  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+  const model = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
   try {
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
       method: 'POST',
@@ -110,8 +110,12 @@ module.exports = async function handler(req, res) {
 
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
-      console.error('Gemini API returned status:', response.status);
-      return res.status(502).json({ error: 'Gemini could not complete the request. Please try again.' });
+      const googleMessage = data.error?.message || 'No error message returned.';
+      console.error('Gemini API returned status:', response.status, 'message:', googleMessage);
+      const errorMessage = response.status === 404
+        ? `Gemini model "${model}" was not found or is unavailable to this API key.`
+        : 'Gemini could not complete the request. Please try again.';
+      return res.status(502).json({ error: errorMessage });
     }
     const reply = data.candidates?.[0]?.content?.parts
       ?.map(part => part.text || '')
