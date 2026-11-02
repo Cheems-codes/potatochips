@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovely Rose Sagaysay — Portfolio & Dashboard</title>
+    <link rel="stylesheet" href="css/portfolio.css">
+    <script src="vendor/lucide.min.js"></script>
+    <style>
+        /* Custom Blob Morph Animation for Hero Image */
+        @keyframes blobMorph {
+            0% {
+                border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+            }
+
+            33% {
+                border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%;
+            }
+
+            66% {
+                border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+            }
+
+            100% {
+                border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+            }
+        }
+
+        .animate-blob {
+            animation: blobMorph 8s ease-in-out infinite alternate;
+        }
+
+        /* Particle Canvas Overlay */
+        #fairyDustCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Glassmorphic Navbar & Cards */
+        .glass-nav {
+            background: rgba(247, 246, 238, 0.85);
+            backdrop-filter: blur(12px);
+        }
+
+        .dark .glass-nav {
+            background: rgba(18, 18, 30, 0.85);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-cream dark:bg-darkBg text-darkText dark:text-gray-100 transition-colors duration-300 font-sans min-h-screen relative overflow-x-hidden">
+
+    <!-- Fairy Dust Canvas Trail -->
+    <canvas id="fairyDustCanvas"></canvas>
+
+    <!-- Navigation Bar -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-gray-200/60 dark:border-gray-800/60 transition-all">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 rounded-xl bg-amberAccent text-white font-extrabold flex items-center justify-center text-lg shadow-sm group-hover:scale-105 transition-transform">
+                    LR
+                </div>
+                <span
+                    class="font-bold tracking-widest text-sm uppercase text-darkText/80 dark:text-gray-200">Dashboard</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav
+                class="hidden md:flex items-center gap-8 font-semibold text-xs tracking-wider uppercase text-gray-600 dark:text-gray-300">
+                <a href="#about" class="hover:text-amberAccent transition-colors">About</a>
+                <a href="#services" class="hover:text-amberAccent transition-colors">Services</a>
+                <a href="#certificates" class="hover:text-amberAccent transition-colors">Certificates</a>
+                <a href="#contacts" class="hover:text-amberAccent transition-colors">Contacts</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button id="themeToggleBtn"
+                    class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-700 text-xs font-semibold uppercase tracking-wider hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                    <i data-lucide="sun" class="w-4 h-4 text-amberAccent dark:hidden"></i>
+                    <i data-lucide="moon" class="w-4 h-4 text-amberAccent hidden dark:block"></i>
+                    <span id="themeToggleText">Light Mode</span>
+                </button>
+
+                <a href="#contacts"
+                    class="hidden sm:inline-flex items-center gap-2 bg-sageAccent text-white px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider hover:opacity-90 transition shadow-sm">
+                    Let's Talk <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="pt-24">
+
+        <!-- HERO / DASHBOARD SECTION -->
+        <section id="hero"
+            class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between gap-12">
+            <!-- Left Text Content -->
+            <div class="flex-1 space-y-6">
+                <div
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 text-xs font-bold tracking-wide">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>🌸 OPEN TO NEW OPPORTUNITIES</span>
+                </div>
+
+                <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                    Bringing <br>
+                    curious ideas <br>
+                    <span class="text-amberAccent font-serif italic font-normal">to life.</span>
+                </h1>
+
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-xl leading-relaxed">
+                    I'm Lovely Rose Sagaysay — an IT student at PCU and creative technologist turning curious ideas into
+                    useful, human-centered experiences.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="#about"
+                        class="px-7 py-3.5 rounded-xl bg-amberAccent text-white font-bold text-xs uppercase tracking-wider hover:shadow-lg hover:-translate-y-0.5 transition flex items-center gap-2">
+                        Explore More <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="assets/resume.png" download="Lovely_Rose_Sagaysay_Resume.png"
+                        class="px-7 py-3.5 rounded-xl bg-sageAccent text-white font-bold text-xs uppercase tracking-wider hover:shadow-lg hover:-translate-y-0.5 transition flex items-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Hero Image (Animated Blob -> Smooth Oval/Play Shape on Hover) -->
+            <div class="flex-1 flex justify-center items-center relative blob-hover-container group">
+                <div class="relative w-72 h-80 sm:w-96 sm:h-[28rem] cursor-pointer">
+
+                    <!-- Layer 1: Ambient Background Glow -->
+                    <div
+                        class="absolute inset-0 bg-amberAccent/30 dark:bg-amberAccent/20 blur-2xl transform scale-105 animate-blob">
+                    </div>
+
+                    <!-- Layer 2: Decorative Backing Border Frame -->
+                    <div class="absolute inset-0 border-2 border-amberAccent/50 animate-blob transform rotate-3"></div>
+
+                    <!-- Layer 3: Main Profile Picture Container -->
+                    <div
+                        class="relative w-full h-full bg-[#E5EBF2] dark:bg-slate-800 overflow-hidden shadow-2xl animate-blob border-4 border-white dark:border-gray-800">
+                        <img src="assets/akoito.png" alt="Lovely Rose Sagaysay"
+                            class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT ME SECTION -->
+        <section id="about" class="py-20 border-t border-gray-200/60 dark:border-gray-800/60">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Main Statement Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tight max-w-2xl">
+                        Coding in pink, thinking in logic, building cool stuff.
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <!-- Column 1: Index & Quote Column -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <blockquote
+                            class="text-2xl md:text-3xl font-medium leading-snug tracking-tight text-darkText dark:text-gray-100">
+                            Beyond just a tool, technology is a canvas for weaving intricate details into something that
+                            feels effortlessly simple. I'm finding my unique artistry in code. <span>
+                            </span> I'm learning how to do exactly that.
+                        </blockquote>
+                    </div>
+
+                    <!-- Column 2: Bio Text & Metadata Grid -->
+                    <div class="lg:col-span-4 space-y-8">
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Currently pursuing Information Technology at Philippine Christian University Manila,
+                            focusing on the intersection of front-end development, visual design, and back-end
+                            architecture
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            I’m driven by the quiet balance between precision and creativity—building structured systems
+                            that feel effortlessly fluid, human, and beautiful to use.
+                        </p>
+
+                        <!-- Metadata Grid -->
+                        <div class="grid grid-cols-2 gap-6 pt-6 border-t border-gray-200 dark:border-gray-800">
+                            <div>
+                                <span
+                                    class="block text-[10px] uppercase tracking-widest font-mono text-gray-400 mb-1">CURRENTLY</span>
+                                <span class="font-bold text-sm">BS Information Technology</span>
+                            </div>
+                            <div>
+                                <span
+                                    class="block text-[10px] uppercase tracking-widest font-mono text-gray-400 mb-1">BASED
+                                    IN</span>
+                                <span class="font-bold text-sm">Manila, Philippines</span>
+                            </div>
+                            <div>
+                                <span
+                                    class="block text-[10px] uppercase tracking-widest font-mono text-gray-400 mb-1">LANGUAGES</span>
+                                <span class="font-bold text-sm text-amberAccent">3 Languages (English, Tagalog,
+                                    Cebuano)</span>
+                            </div>
+                            <div>
+                                <span
+                                    class="block text-[10px] uppercase tracking-widest font-mono text-gray-400 mb-1">FOCUS</span>
+                                <span class="font-bold text-sm">UI/UX & Web Dev</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Rectangular Framed Portrait (Image 2 Shape inside About) -->
+                    <div class="lg:col-span-3 flex justify-center">
+                        <div
+                            class="relative w-full max-w-xs aspect-[3/4] bg-cream dark:bg-darkCard p-2 border-2 border-gray-300 dark:border-gray-700 shadow-xl rounded-xl">
+                            <div
+                                class="w-full h-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800 relative group">
+                                <img src="assets/pangalawame.png" alt="Lovely Rose Sagaysay - About"
+                                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services"
+            class="py-20 bg-gray-50/50 dark:bg-gray-900/40 border-t border-gray-200/60 dark:border-gray-800/60">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center max-w-xl mx-auto mb-16">
+                    <span
+                        class="font-mono text-amberAccent text-xs uppercase tracking-widest font-bold">Capabilities</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mt-2">What I Can Do</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div
+                        class="bg-white dark:bg-darkCard p-8 rounded-2xl border border-gray-200/80 dark:border-gray-800 hover:border-amberAccent transition-all shadow-sm group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amberAccent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="layout" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">UI/UX & Prototyping</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                            Crafting clean wireframes, intuitive interface designs, and interactive prototypes tailored
+                            for user satisfaction.
+                        </p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div
+                        class="bg-white dark:bg-darkCard p-8 rounded-2xl border border-gray-200/80 dark:border-gray-800 hover:border-sageAccent transition-all shadow-sm group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-sageAccent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="code" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Front-End Development</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                            Building responsive, modern, and accessible websites using standard web tech, HTML5, CSS3,
+                            JavaScript, and Tailwind.
+                        </p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div
+                        class="bg-white dark:bg-darkCard p-8 rounded-2xl border border-gray-200/80 dark:border-gray-800 hover:border-amberAccent transition-all shadow-sm group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amberAccent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="cpu" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">IT Systems & Support</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                            Applying foundational IT knowledge in database structures, web logic, software deployment,
+                            and tech trouble-shooting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATES SECTION (5 Updated Items with Dual Picture Support) -->
+        <section id="certificates" class="py-20 border-t border-gray-200/60 dark:border-gray-800/60">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+                    <div>
+                        <span
+                            class="font-mono text-amberAccent text-xs uppercase tracking-widest font-bold">Achievements</span>
+                        <h2 class="text-3xl md:text-5xl font-extrabold mt-2">Certificates & Recognition</h2>
+                    </div>
+                    <p class="text-sm font-mono text-gray-500 max-w-xs">
+                        Click on any certificate card to preview the full, official certificate document.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Certificate Card 1 -->
+                    <div role="button" tabindex="0" onclick="openCertModal('assets/certfull1.png', 'Certificate of Recognition — PCU')"
+                        class="bg-white dark:bg-darkCard rounded-2xl overflow-hidden border border-gray-200/80 dark:border-gray-800 hover:border-amberAccent transition-all shadow-sm cursor-pointer group">
+                        <div class="aspect-[4/3] bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
+                            <!-- Thumbnail: Picture holding certificate -->
+                            <img src="assets/certfull1.png" alt="Holding Certificate 1"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs uppercase tracking-wider">
+                                <i data-lucide="eye" class="w-4 h-4"></i> View Certificate
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-mono text-amberAccent font-bold">2024 • Dean's Lister</span>
+                            <h3 class="text-lg font-bold mt-1">Certificate of Recognition</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Philippine Christian University</p>
+                        </div>
+                    </div>
+
+                    <!-- Certificate Card 2 -->
+                    <div role="button" tabindex="0" onclick="openCertModal('assets/certfull2.png', 'IT Workshop & Seminar Certificate')"
+                        class="bg-white dark:bg-darkCard rounded-2xl overflow-hidden border border-gray-200/80 dark:border-gray-800 hover:border-amberAccent transition-all shadow-sm cursor-pointer group">
+                        <div class="aspect-[4/3] bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
+                            <img src="assets/cert2wthme.png" alt="Holding Certificate 2"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs uppercase tracking-wider">
+                                <i data-lucide="eye" class="w-4 h-4"></i> View Certificate
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-mono text-amberAccent font-bold">2025 • Dean's Lister</span>
+                            <h3 class="text-lg font-bold mt-1">Certifivate of Recognition</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Philippine Christian University
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Certificate Card 3 -->
+                    <div role="button" tabindex="0" onclick="openCertModal('assets/certfull3.png', 'Front-End Web Development Competency')"
+                        class="bg-white dark:bg-darkCard rounded-2xl overflow-hidden border border-gray-200/80 dark:border-gray-800 hover:border-amberAccent transition-all shadow-sm cursor-pointer group">
+                        <div class="aspect-[4/3] bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
+                            <img src="assets/cert3wthme.png" alt="Holding Certificate 3"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs uppercase tracking-wider">
+                                <i data-lucide="eye" class="w-4 h-4"></i> View Certificate
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-mono text-amberAccent font-bold">2026 • Dean's Lister</span>
+                            <h3 class="text-lg font-bold mt-1">Certificate of Recognition</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Philippine Christian University</p>
+                        </div>
+                    </div>
+
+                    <!-- Certificate Card 4 -->
+                    <div role="button" tabindex="0" onclick="openCertModal('assets/certfull4.png', 'UI/UX Design Certification')"
+                        class="bg-white dark:bg-darkCard rounded-2xl overflow-hidden border border-gray-200/80 dark:border-gray-800 hover:border-amberAccent transition-all shadow-sm cursor-pointer group">
+                        <div class="aspect-[4/3] bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
+                            <img src="assets/certfull4.png" alt="Holding Certificate 4"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs uppercase tracking-wider">
+                                <i data-lucide="eye" class="w-4 h-4"></i> View Certificate
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-mono text-amberAccent font-bold">2023 • Academic Award</span>
+                            <h3 class="text-lg font-bold mt-1">Certicate of Recognition</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">College of Infrmation Technology
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Certificate Card 5 -->
+                    <div role="button" tabindex="0" onclick="openCertModal('assets/certfull5.png', 'Leadership & Academic Excellence')"
+                        class="bg-white dark:bg-darkCard rounded-2xl overflow-hidden border border-gray-200/80 dark:border-gray-800 hover:border-amberAccent transition-all shadow-sm cursor-pointer group">
+                        <div class="aspect-[4/3] bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
+                            <img src="assets/cert5wthme.jpeg" alt="Holding Certificate 5"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs uppercase tracking-wider">
+                                <i data-lucide="eye" class="w-4 h-4"></i> View Certificate
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-mono text-amberAccent font-bold">2025 • Academic Award</span>
+                            <h3 class="text-lg font-bold mt-1">Certificate of Award</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">College of Information Technology
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTS SECTION (Image 3 Modern Layout + Original Warm Palette) -->
+        <section id="contacts"
+            class="py-20 bg-gray-50/50 dark:bg-gray-900/40 border-t border-gray-200/60 dark:border-gray-800/60">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+                    <!-- Left Column: Big Heading & Info -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div>
+                            <span class="font-mono text-amberAccent text-xs uppercase tracking-widest font-bold">✦
+                                CONTACTS</span>
+                            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mt-2 leading-tight">
+                                Let's make <br>
+                                <span class="text-amberAccent font-serif italic font-normal">something</span> <br>
+                                useful.
+                            </h2>
+                        </div>
+
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                            Have an idea, an opportunity, or just want to talk tech? My inbox is open.
+                        </p>
+
+                        <!-- Contact Direct Details -->
+                        <div class="space-y-4 font-mono text-xs">
+                            <a href="mailto:lovely.sagaysay.coi@pcu.edu.ph"
+                                class="flex items-center gap-3 text-gray-700 dark:text-gray-200 hover:text-amberAccent transition">
+                                <i data-lucide="mail" class="w-4 h-4 text-amberAccent"></i>
+                                <span>lovely.sagaysay.coi@pcu.edu.ph<span>
+                            </a>
+                            <div class="flex items-center gap-3 text-gray-700 dark:text-gray-200">
+                                <i data-lucide="phone" class="w-4 h-4 text-amberAccent"></i>
+                                <span>+63 991 067 3075</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-gray-700 dark:text-gray-200">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-amberAccent"></i>
+                                <span>Manila, Philippines</span>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Links Block (Built-in SVGs) -->
+                        <div class="flex items-center gap-4 mt-8">
+
+                            <!-- GitHub -->
+                            <a href="https://github.com/lovely2512" target="_blank" rel="noopener noreferrer"
+                                title="GitHub Profile"
+                                class="w-12 h-12 rounded-2xl bg-white dark:bg-darkCard border border-gray-200/80 dark:border-gray-800 flex items-center justify-center text-darkText dark:text-white hover:border-amberAccent hover:bg-amberAccent/10 hover:text-amberAccent hover:-translate-y-1 transition-all shadow-sm">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                </svg>
+                            </a>
+
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/in/lovely-rose-r-sagaysay-791662361/" target="_blank"
+                                rel="noopener noreferrer" title="LinkedIn Profile"
+                                class="w-12 h-12 rounded-2xl bg-white dark:bg-darkCard border border-gray-200/80 dark:border-gray-800 flex items-center justify-center text-darkText dark:text-white hover:border-amberAccent hover:bg-amberAccent/10 hover:text-amberAccent hover:-translate-y-1 transition-all shadow-sm">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.49 1.49 0 1 0 0 2.98 1.49 1.49 0 0 0 0-2.98z" />
+                                </svg>
+                            </a>
+
+                            <!-- Instagram -->
+                            <a href="https://instagram.com/potatoechipset" target="_blank" rel="noopener noreferrer"
+                                title="Instagram Profile"
+                                class="w-12 h-12 rounded-2xl bg-white dark:bg-darkCard border border-gray-200/80 dark:border-gray-800 flex items-center justify-center text-darkText dark:text-white hover:border-amberAccent hover:bg-amberAccent/10 hover:text-amberAccent hover:-translate-y-1 transition-all shadow-sm">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="py-8 border-t border-gray-200/60 dark:border-gray-800/60 text-center text-xs font-mono text-gray-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Lovely Rose Sagaysay. All rights reserved.</p>
+            <p>Designed & Built with Care • PCU Manila</p>
+        </div>
+    </footer>
+
+    <!-- CERTIFICATE MODAL -->
+    <div id="certModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-6">
+        <div
+            class="bg-white dark:bg-darkCard rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl border border-gray-700">
+            <div class="p-4 bg-darkText text-white flex justify-between items-center">
+                <h3 id="certModalTitle" class="font-bold text-sm">Certificate Viewer</h3>
+                <button onclick="closeCertModal()" class="text-gray-400 hover:text-white">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="p-4 max-h-[75vh] overflow-auto flex justify-center bg-gray-100 dark:bg-gray-900">
+                <img id="certModalImg" src="" alt="Full Certificate" class="max-w-full h-auto rounded shadow-md">
+            </div>
+        </div>
+    </div>
+
+    <!-- RESUME PREVIEW MODAL -->
+    <div id="resumeModal"
+        class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 md:p-8">
+        <div
+            class="bg-white dark:bg-darkCard rounded-2xl max-w-4xl w-full h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-gray-700">
+            <!-- Header -->
+            <div class="p-4 bg-darkText text-white flex justify-between items-center shrink-0">
+                <h3 class="font-bold text-sm">Resume Preview — Lovely Rose Sagaysay</h3>
+                <button onclick="closeResumeModal()" class="text-gray-400 hover:text-white">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <!-- Scrollable Image Container with object-contain -->
+            <div class="p-4 flex-1 overflow-y-auto bg-gray-100 dark:bg-gray-900 flex justify-center items-start">
+                <img src="assets/resume.png" alt="Resume Preview"
+                    class="w-full max-w-3xl h-auto object-contain rounded shadow-lg" />
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="p-4 border-t border-gray-200 dark:border-gray-800 flex justify-end gap-3 dark:bg-darkCard">
+                <button onclick="closeResumeModal()"
+                    class="px-4 py-2 text-xs font-bold text-gray-500 hover:text-gray-700">
+                    Close
+                </button>
+                <a href="assets/resume.png" target="_blank" rel="noopener noreferrer"
+                    class="px-5 py-2 rounded-xl bg-sageAccent text-white text-xs font-bold flex items-center gap-2">
+                    <i data-lucide="view" class="w-4 h-4"></i> View Resume
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chatbot Widget -->
+    <div id="chatbot-container" class="fixed bottom-5 right-5 z-50">
+        <button id="chat-toggle-btn" class="p-4 rounded-full bg-sageAccent text-white shadow-lg">
+            💬 Chat
+        </button>
+
+        <div id="chat-box"
+            class="hidden flex-col w-80 h-96 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
+            <div class="p-3 bg-sageAccent text-white font-bold rounded-t-2xl flex justify-between items-center">
+                <span>AI Portfolio Assistant</span>
+                <button id="chat-close-btn">&times;</button>
+            </div>
+            <div id="chat-messages" class="flex-1 p-3 overflow-y-auto text-sm space-y-2"></div>
+            <div class="p-2 border-t border-gray-200 dark:border-gray-700 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Ask something..."
+                    class="flex-1 p-2 border rounded-xl text-sm dark:bg-gray-900 dark:text-white" />
+                <button id="send-btn" class="px-3 py-2 bg-sageAccent text-white rounded-xl text-sm">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio interactions and chat client served by the Vercel chat function -->
+    <script src="js/portfolio.js" defer></script>
+    <script src="/api/chat?client=1" defer></script>
+</body>
+
+</html>
